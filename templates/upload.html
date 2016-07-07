@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css') }}" />
+		<style type="text/css">
+		.main {
+			background: center no-repeat url({{ url_for('static', filename='img/maliang1.jpg')}}) ghostwhite;
+		}
+		.upload {
+			margin: 15rem;
+		}
+		</style>
+		<script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
+		<script src="{{ url_for('static', filename='js/materialize.min.js') }}" type="text/javascript" charset="utf-8"></script>
+		<title>Hello，马良！</title>
+	</head>
+
+	<body>
+		<div class="header">
+			<nav>
+				<div class="blue nav-wrapper">
+					<div class="container">
+						<a href="#" class="brand-logo">Hello，马良！</a>
+					</div>
+				</div>
+			</nav>
+		</div>
+		<div class="main">
+			<div class="container">
+				<div class="row">
+					{% with messages = get_flashed_messages() %} 
+						{% if messages %}
+							{% for message in messages %}
+								<script type="text/javascript">
+									Materialize.toast('{{ message }}', 3000, 'rounded');
+								</script>
+							{% endfor %}
+						{% endif %} 
+					{% endwith %}
+					<div class="upload col s6 push-s4">
+						<form action="/" method="post" enctype="multipart/form-data">
+							<div class="row">
+								<div class="file-field input-field">
+									<div class="btn">
+										<span>File</span>
+										<input name="image_file" type="file">
+									</div>
+									<div class="file-path-wrapper">
+										<input class="file-path validate" type="text">
+									</div>
+									<input class="col s4 btn" type="submit" value="Submit">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>
