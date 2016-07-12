@@ -32,8 +32,6 @@
 			}
 		}
 		</style>
-		<script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
-		<script src="{{ url_for('static', filename='js/materialize.min.js') }}" type="text/javascript" charset="utf-8"></script>
 	</head>
 
 	<body>
@@ -49,15 +47,6 @@
 		<main>
 			<div class="container">
 				<div class="row">
-					{% with messages = get_flashed_messages() %} 
-						{% if messages %}
-							{% for message in messages %}
-								<script type="text/javascript">
-									Materialize.toast('{{ message }}', 3000, 'rounded');
-								</script>
-							{% endfor %}
-						{% endif %} 
-					{% endwith %}
 					<div class="upload">
 						<form action="/" method="post" enctype="multipart/form-data">
 							<div class="row">
@@ -77,6 +66,17 @@
 				</div>
 			</div>
 		</main>
+		<script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
+		<script src="{{ url_for('static', filename='js/materialize.min.js') }}" type="text/javascript" charset="utf-8"></script>
+		{% with messages = get_flashed_messages() %} 
+			{% if messages %}
+				{% for message in messages %}
+					<script type="text/javascript">
+						Materialize.toast('{{ message }}', 3000, 'rounded');
+					</script>
+				{% endfor %}
+			{% endif %} 
+		{% endwith %}
 	</body>
 
 </html>

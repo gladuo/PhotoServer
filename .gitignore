@@ -1,3 +1,5 @@
 .idea
 .project
 *.pyc
+*.jpg
+*.png
