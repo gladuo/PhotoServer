@@ -2,23 +2,42 @@
 <html>
 
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="description" content="Hello，马良！">
+		<meta name="keywords" content="马良">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Hello，马良！</title>
+		<!-- Set render engine for 360 browser -->
+		<meta name="renderer" content="webkit">
+		<!-- No Baidu Siteapp-->
+		<meta http-equiv="Cache-Control" content="no-siteapp"/>
+		<!--<link rel="icon" type="image/png" href="assets/i/favicon.png">-->
+		
 		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/materialize.css') }}" />
 		<style type="text/css">
-		.main {
-			background: center no-repeat url({{ url_for('static', filename='img/maliang1.jpg')}}) ghostwhite;
+		main {
+			padding: 15rem;
+			background: url({{ url_for('static', filename='img/maliang1.jpg')}}) center no-repeat ghostwhite;
 		}
-		.upload {
-			margin: 15rem;
+		@media only screen and (max-width: 600px){
+			main {
+			    padding: 15rem 0;
+			}
+			.file-btn {
+				width: 30%;
+			}
+			.submit-btn {
+				width: 100%;
+			}
 		}
 		</style>
 		<script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript" charset="utf-8"></script>
 		<script src="{{ url_for('static', filename='js/materialize.min.js') }}" type="text/javascript" charset="utf-8"></script>
-		<title>Hello，马良！</title>
 	</head>
 
 	<body>
-		<div class="header">
+		<header>
 			<nav>
 				<div class="blue nav-wrapper">
 					<div class="container">
@@ -26,8 +45,8 @@
 					</div>
 				</div>
 			</nav>
-		</div>
-		<div class="main">
+		</header>
+		<main>
 			<div class="container">
 				<div class="row">
 					{% with messages = get_flashed_messages() %} 
@@ -39,25 +58,25 @@
 							{% endfor %}
 						{% endif %} 
 					{% endwith %}
-					<div class="upload col s6 push-s4">
+					<div class="upload">
 						<form action="/" method="post" enctype="multipart/form-data">
 							<div class="row">
 								<div class="file-field input-field">
-									<div class="btn">
+									<div class="file-btn btn btn-large">
 										<span>File</span>
 										<input name="image_file" type="file">
 									</div>
 									<div class="file-path-wrapper">
 										<input class="file-path validate" type="text">
 									</div>
-									<input class="col s4 btn" type="submit" value="Submit">
+									<input class="submit-btn btn btn-large" type="submit" value="Submit">
 								</div>
 							</div>
 						</form>
 					</div>
 				</div>
 			</div>
-		</div>
+		</main>
 	</body>
 
 </html>

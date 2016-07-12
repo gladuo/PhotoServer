@@ -10,6 +10,7 @@ from utils import allowed_file
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = config.UPLOAD_FOLDER
 app.config['MAX_CONTENT_LENGTH'] = config.MAX_CONTENT_LENGTH
+app.config['SECRET_KEY'] = 'some secret key'
 
 
 @app.route('/', methods=['GET', 'POST'])
