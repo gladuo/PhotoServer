@@ -40,7 +40,8 @@ def index():
 
 @app.route('/api/get', methods=['GET'])
 def get_image():
-    newest_file = os.listdir(config.UPLOAD_FOLDER)[-1]
+    file_list = os.listdir(config.UPLOAD_FOLDER)
+    newest_file = sorted(file_list)[-1]
     return jsonify({'file_name': newest_file, 'src': url_for('static', filename=os.path.join('upload', newest_file))})
 
 
