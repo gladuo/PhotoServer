@@ -4,7 +4,7 @@ import requests
 import json
 from contextlib import closing
 
-HOST = 'http://127.0.0.1:5000'
+HOST = 'http://maliang.suosi.org'
 URL = HOST + '/api/get'
 
 
@@ -20,7 +20,7 @@ def download():
     filename, src = fetch_url()
     with closing(requests.get(url=src, stream=True)) as response:
         chunk_size = 1024
-        content_size = int(response.headers['content-length'])
+        content_size = int(response.headers['content-length'] if 'content-length' in response.headers else chunk_size)
         chunk_size = min(chunk_size, content_size)
         with open('./newest.png', "wb") as file:
             for data in response.iter_content(chunk_size=chunk_size):
